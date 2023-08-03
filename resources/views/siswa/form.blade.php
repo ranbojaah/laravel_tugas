@@ -60,21 +60,26 @@
 
     <div class="container">
         <h1>Form Siswa</h1>
-        <form action="{{url('siswa')}}" method="POST">
+        <form action="{{url('siswa', @$siswa->id)}}" method="POST">
           @csrf
+
+          @if(!empty($siswa))
+              @method('PATCH')
+          @endif
+
           <div class="mb-3">
             <label class="form-label">NIS</label>
-            <input type="text" class="form-control" name="nis" value="{{old('nis')}}">
+            <input type="text" class="form-control" name="nis" value="{{old('nis', @$siswa->nis)}}">
           </div>
           <div class="mb-3">
             <label class="form-label">Nama Lengkap</label>
-            <input type="text" class="form-control" name="nama_lengkap" value="{{old('nama_lengkap')}}">
+            <input type="text" class="form-control" name="nama_lengkap" value="{{old('nama_lengkap', @$siswa-> nama_lengkap)}}">
           </div>
           <div class="mb-3">
             <label class="form-label">Jenis Kelamin</label>
               <div class="input">
-                <input type="radio" class="form-check-input" name="jenkel" value="L" @if(old('jenkel') == 'L') checked @endif >L
-                <input type="radio" class="form-check-input" name="jenkel" value="P" @if(old('jenkel') == 'P') checked @endif >P
+                <input type="radio" class="form-check-input" name="jenkel" value="L" {{ old('jenkel') === 'L' || @$siswa->jenkel === 'L' ? 'checked' : '' }}>L
+                <input type="radio" class="form-check-input" name="jenkel" value="P" {{ old('jenkel') === 'P' || @$siswa->jenkel === 'P' ? 'checked' : '' }}>P
               </div>
           </div>
           <div class="mb-3">
@@ -82,10 +87,10 @@
               <div class="input">
                 <select class="form-select form-select-sm" aria-label="Small select example" name="goldar">
                   <option value="">- Pilih Goldar -</option>
-                  <option value="A" @if(old('goldar') == 'A') selected @endif>A</option>
-                  <option value="B" @if(old('goldar') == 'B') selected @endif>B</option>
-                  <option value="AB" @if(old('goldar') == 'AB') selected @endif>AB</option>
-                  <option value="O" @if(old('goldar') == 'O') selected @endif>O</option>
+                  <option value="A" {{ old('goldar') === 'A' || @$siswa->goldar === 'A' ? 'selected' : '' }}>A</option>
+                  <option value="B" {{ old('goldar') === 'B' || @$siswa->goldar === 'B' ? 'selected' : '' }}>B</option>
+                  <option value="AB" {{ old('goldar') === 'AB' || @$siswa->goldar === 'AB' ? 'selected' : '' }}>AB</option>
+                  <option value="O" {{ old('goldar') === 'O' || @$siswa->goldar === 'O' ? 'selected' : '' }}>O</option>
                 </select>
               </div>
           </div>

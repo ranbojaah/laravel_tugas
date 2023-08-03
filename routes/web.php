@@ -57,6 +57,11 @@ Route::post('/siswa', [SiswaController::class,'store']);
 Route::get('/kelas/create', [KelasController::class, 'create']);
 Route::post('/kelas', [KelasController::class,'store']);
 
+//sesi 26
+Route::get('/siswa/{id}/edit', [SiswaController::class, 'edit']);
+Route::patch('/siswa/{id}', [SiswaController::class, 'update']);
+Route::delete('/siswa/{id}', [SiswaController::class, 'destroy']);
 
-
-
+Route::get('/kelas/{id}/edit', [KelasController::class, 'edit']);
+Route::patch('/kelas/{id}', [KelasController::class, 'update']);
+Route::delete('/kelas/{id}', [KelasController::class, 'destroy']);

@@ -66,33 +66,38 @@
 
     <div class="container">
         <h1>Form Kelas</h1>
-        <form action="{{url('kelas')}}" method="POST">
+        <form action="{{url('kelas', @$kelas->id)}}" method="POST">
             @csrf
+            
+            @if (!empty($kelas))
+              @method('PATCH')
+            @endif
+
             <div class="mb-3">
               <label class="form-label">Nama Kelas</label>
-              <input type="text" class="form-control" name="nama_kelas" value="{{old('nama_kelas')}}">
+              <input type="text" class="form-control" name="nama_kelas" value="{{old('nama_kelas', @$kelas->nama_kelas)}}">
             </div>
             <div class="mb-3">
               <label class="form-label">Jurusan</label>
                 <div class="input">
                   <select class="form-select form-select-sm" aria-label="Small select example" name="jurusan">
-                      <option value="">- Pilih Jurusan -</option>
-                      <option value="Teknik Audio Vidio" @if(old('jurusan') == 'Teknik Audio Vidio') selected @endif>Teknik Audio Vidio</option>
-                      <option value="Teknik Otomasi Industri" @if(old('jurusan') == 'Teknik Otomasi Industri') selected @endif>Teknik Otomasi Industri</option>
-                      <option value="Teknik Instalasi Listrik" @if(old('jurusan') == 'Teknik Instalasi Listrik') selected @endif>Teknik Instalasi Listrik</option>
-                      <option value="Teknik Komputer Jaringan" @if(old('jurusan') == 'Teknik Komputer Jaringan') selected @endif>Teknik Komputer Jaringan</option>
-                      <option value="Rekayasa Perangkat Lunak" @if(old('jurusan') == 'Rekayasa Perangkat Lunak') selected @endif>Rekayasa Perangkat Lunak</option>
-                      <option value="Desain Komunikasi Visual" @if(old('jurusan') == 'Desain Komunikasi Visual') selected @endif>Desain Komunikasi Visual</option>
+                    <option value="">- Pilih Jurusan -</option>
+                    <option value="Teknik Audio Vidio" {{ old('jurusan') === 'Teknik Audio Vidio' || @$kelas->jurusan === 'Teknik Audio Vidio' ? 'selected' : '' }}>Teknik Audio Vidio</option>
+                    <option value="Teknik Otomasi Industri" {{ old('jurusan') === 'Teknik Otomasi Industri' || @$kelas->jurusan === 'Teknik Otomasi Industri' ? 'selected' : '' }}>Teknik Otomasi Industri</option>
+                    <option value="Teknik Instalasi Listrik" {{ old('jurusan') === 'Teknik Instalasi Listrik' || @$kelas->jurusan === 'Teknik Instalasi Listrik' ? 'selected' : '' }}>Teknik Instalasi Listrik</option>
+                    <option value="Teknik Komputer Jaringan" {{ old('jurusan') === 'Teknik Komputer Jaringan' || @$kelas->jurusan === 'Teknik Komputer Jaringan' ? 'selected' : '' }}>Teknik Komputer Jaringan</option>
+                    <option value="Rekayasa Perangkat Lunak" {{ old('jurusan') === 'Rekayasa Perangkat Lunak' || @$kelas->jurusan === 'Rekayasa Perangkat Lunak' ? 'selected' : '' }}>Rekayasa Perangkat Lunak</option>
+                    <option value="Desain Komunikasi Visual" {{ old('jurusan') === 'Desain Komunikasi Visual' || @$kelas->jurusan === 'Desain Komunikasi Visual' ? 'selected' : '' }}>Desain Komunikasi Visual</option>
                   </select>
                 </div>
             </div>
             <div class="mb-3">
               <label class="form-label">Lokasi Ruangan</label>
-              <input type="text" class="form-control" name="lokasi_ruangan" value="{{old('lokasi_ruangan')}}">
+              <input type="text" class="form-control" name="lokasi_ruangan" value="{{old('lokasi_ruangan', @$kelas->lokasi_ruangan)}}">
             </div>
             <div class="mb-3">
               <label class="form-label">Nama Wali Kelas</label>
-              <input type="text" class="form-control" name="nama_wali_kelas" value="{{old('nama_wali_kelas')}}">
+              <input type="text" class="form-control" name="nama_wali_kelas" value="{{old('nama_wali_kelas', @$kelas->nama_wali_kelas)}}">
             </div>
             <div class="mb-3">
               <button class="btn custom-button" type="submit" value="Simpan">Simpan</button>

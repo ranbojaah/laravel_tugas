@@ -30,6 +30,18 @@
       border-color: #2980b9; 
       color: #fff; 
     }
+
+    .btn.custom-button-delete {
+        background-color: #e74c3c;
+        border-color: #e74c3c;
+        color: #fff;
+    }
+
+    .btn.custom-button-delete:hover {
+        background-color: #c0392b;
+        border-color: #c0392b;
+        color: #fff;
+    }
       </style>
   </head>
   <body>
@@ -58,6 +70,7 @@
             <th>Nama Lengkap</th>
             <th>Jenis Kelamin</th>
             <th>Golongan Darah</th>
+            <th>Aksi</th>
         </tr>
         <?php $i = 1 ?>
         @foreach ($siswa as $index => $row)
@@ -66,6 +79,14 @@
             <td>{{ $row->nama_lengkap }}</td>
             <td>{{ $row->jenkel }}</td>
             <td>{{ $row->goldar }}</td>
+            <td class="d-flex">
+              <button class="btn custom-button me-2"><a href="{{url('/siswa/'. $row->id . '/edit')}}" class="text-white">Edit</a></button>
+              <form action="{{url('/siswa', $row->id)}}" method="POST">
+                @method('DELETE')
+                @csrf
+                <button type="submit" class="btn custom-button-delete me-2">Hapus</button>
+              </form>
+            </td>
         </tr>
         @endforeach
     </table>
