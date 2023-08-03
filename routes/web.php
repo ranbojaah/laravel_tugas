@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\KelasController;
+
+
 
 
 /*
@@ -18,21 +22,41 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/belajar', function(){
-    return view('belajar');
-});
+// Route::get('/belajar', function(){
+//     return view('belajar');
+// });
 
-Route::get('/mempelajari', function(){
-    $nama = "Ahmad";
-    $kelas = "XI RPL 1";
+// Route::get('/mempelajari', function(){
+//     $nama = "Ahmad";
+//     $kelas = "XI RPL 1";
 
-    return view('table', compact('nama','kelas'));
-});
+//     return view('table', compact('nama','kelas'));
+// });
 
-Route::get('/diajar', function(){
-    $tanggal = date('d');
-    $bulan = date('F');
-    $tahun = date('y');
+// Route::get('/diajar', function(){
+//     $tanggal = date('d');
+//     $bulan = date('F');
+//     $tahun = date('y');
 
-    return view('month', compact('tanggal', 'bulan', 'tahun'));
-});
+//     return view('month', compact('tanggal', 'bulan', 'tahun'));
+// });
+Route::get('/belajar', [SiswaController::class, 'index']);
+
+//studi kasus 1 
+Route::get('/siswa', [SiswaController::class, 'siswa']);
+Route::get('/month', [SiswaController::class, 'month']);
+Route::get('/table', [SiswaController::class, 'table']);
+
+//studi kasus 2 
+Route::get('/kelas', [KelasController::class,'kelas']);
+
+//sesi 25
+Route::get('/siswa/create', [SiswaController::class, 'create']);
+Route::post('/siswa', [SiswaController::class,'store']);
+
+Route::get('/kelas/create', [KelasController::class, 'create']);
+Route::post('/kelas', [KelasController::class,'store']);
+
+
+
+

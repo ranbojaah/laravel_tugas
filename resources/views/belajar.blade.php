@@ -1,1 +1,1 @@
-Belajar PHP. Tulisan ini ditampilkan dari views
+Belajar PHP. Tulisan ini ditampikan dari routes. <br>
